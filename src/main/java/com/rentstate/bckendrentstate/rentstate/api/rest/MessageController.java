@@ -2,6 +2,7 @@ package com.rentstate.bckendrentstate.rentstate.api.rest;
 
 import com.rentstate.bckendrentstate.rentstate.domain.model.Message;
 import com.rentstate.bckendrentstate.rentstate.domain.model.Post;
+import com.rentstate.bckendrentstate.rentstate.domain.model.User;
 import com.rentstate.bckendrentstate.rentstate.domain.service.MessageService;
 import com.rentstate.bckendrentstate.rentstate.domain.service.PostService;
 import org.springframework.data.domain.Pageable;
@@ -48,5 +49,34 @@ public class MessageController {
 
         return messageService.delete(messageId);
     }
+
+
+    //EXTRA METHODOS
+
+    /*@PostMapping("/{userId}/clients")
+    public ResponseEntity<String> addClientToUser(@PathVariable Long userId, @RequestBody int clientId) {
+        User user = userService.getById(userId);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        user.addClient(clientId);
+        userService.update(userId, user);
+
+        return ResponseEntity.ok("Client add succesfully");
+    }
+
+    @PostMapping("/{userId}/posts")
+    public ResponseEntity<String> addPostToUser(@PathVariable Long userId, @RequestBody int postId) {
+        User user = userService.getById(userId);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        user.addPost(postId);
+        userService.update(userId, user);
+
+        return ResponseEntity.ok("Post add succesfully");
+    }*/
 
 }
