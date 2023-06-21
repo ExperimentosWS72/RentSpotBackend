@@ -43,12 +43,14 @@ public class Post {
     private String category;
 
     @NotNull
-    private Boolean disponible = true;
+    private Boolean available = true;
 
     @NotNull
     private Long userAuthorId;
 
     @NotNull
     private Integer userRentId = 0;
+
+
 
 }

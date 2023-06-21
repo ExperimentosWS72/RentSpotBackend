@@ -61,7 +61,14 @@ public class User {
     @Column(name = "listPosts")
     private List<Integer> listPosts= new ArrayList<>();
 
+    @ElementCollection
+    @Column(name = "listMessages")
+    private List<Integer> listMessages= new ArrayList<>();
 
+
+
+
+    //FUNCTIONS
     public void addClient(int idClient) {
         if (!listClients.contains(idClient)) {
             listClients.add(idClient);
@@ -69,8 +76,14 @@ public class User {
     }
 
     public void addPost(int idPost) {
-        if (!listClients.contains(idPost)) {
-            listClients.add(idPost);
+        if (!listPosts.contains(idPost)) {
+            listPosts.add(idPost);
+        }
+    }
+
+    public void addMessage(int idMessage) {
+        if (!listMessages.contains(idMessage)) {
+            listClients.add(idMessage);
         }
     }
 }

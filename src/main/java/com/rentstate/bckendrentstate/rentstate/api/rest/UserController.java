@@ -79,4 +79,17 @@ public class UserController {
         return ResponseEntity.ok("Post add succesfully");
     }
 
+    @PostMapping("/{userId}/messages")
+    public ResponseEntity<String> addMessageToUser(@PathVariable Long userId, @RequestBody int messageId) {
+        User user = userService.getById(userId);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        user.addMessage(messageId);
+        userService.update(userId, user);
+
+        return ResponseEntity.ok("Message add succesfully");
+    }
+
 }

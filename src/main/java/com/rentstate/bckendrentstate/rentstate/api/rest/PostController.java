@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,6 +28,7 @@ public class PostController {
 
     @GetMapping
     public List<Post> getAllPost(Pageable pageable) {
+
         return postService.getAll();
     }
 
@@ -50,8 +52,20 @@ public class PostController {
         return postService.delete(postId);
     }
 
-
-
     //EXTRA METHODOS
+    @GetMapping("/available")
+    public List<Post> getPostAvailable(Pageable pageable) {
+        List<Post> allPosts = postService.getAll();
+        List<Post> availablePosts = new ArrayList<>();
+
+        for (Post post : allPosts) {
+            if (post.getAvailable()) {
+                availablePosts.add(post);
+            }
+        }
+
+        return availablePosts;
+    }
+
 
 }

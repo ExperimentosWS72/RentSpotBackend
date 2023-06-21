@@ -58,7 +58,7 @@ public class PostServiceImpl implements PostService {
                                 .withPrice(newPost.getPrice())
                                 .withImgUrl(newPost.getImgUrl())
                                 .withCategory(newPost.getCategory())
-                                .withDisponible(newPost.getDisponible())
+                                .withAvailable(newPost.getAvailable())
                                 .withUserAuthorId(newPost.getUserAuthorId())
                                 .withUserRentId(newPost.getUserRentId())
                         ))

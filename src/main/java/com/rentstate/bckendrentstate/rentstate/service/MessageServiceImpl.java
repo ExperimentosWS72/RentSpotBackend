@@ -47,21 +47,6 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Message update(Long messageId, Message newMessage) {
-
-        return messageRepository.findById(messageId).map(messageToUpdate ->
-                        messageRepository.save(messageToUpdate
-                                .withContent(newMessage.getContent())
-                                .withIdUserAuthor(newMessage.getIdUserAuthor())
-                                .withIdUserDestination(newMessage.getIdUserDestination())
-                        ))
-
-
-                .orElseThrow(() -> new ResourceNotFoundException(ENTITY, messageId));
-
-    }
-
-    @Override
     public ResponseEntity<?> delete(Long messageId) {
         return messageRepository.findById(messageId).map(post -> {
                     messageRepository.delete(post);
