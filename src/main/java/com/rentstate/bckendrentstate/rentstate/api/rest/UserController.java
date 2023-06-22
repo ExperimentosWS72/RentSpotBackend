@@ -1,6 +1,9 @@
 package com.rentstate.bckendrentstate.rentstate.api.rest;
 
+import com.rentstate.bckendrentstate.rentstate.domain.model.Message;
+import com.rentstate.bckendrentstate.rentstate.domain.model.Post;
 import com.rentstate.bckendrentstate.rentstate.domain.model.User;
+import com.rentstate.bckendrentstate.rentstate.domain.service.MessageService;
 import com.rentstate.bckendrentstate.rentstate.domain.service.UserService;
 import com.rentstate.bckendrentstate.rentstate.mapping.UserMapper;
 import com.rentstate.bckendrentstate.rentstate.resource.CreateUserResource;
@@ -9,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -17,10 +21,12 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final MessageService messageService;
     private final UserMapper mapper;
 
-    public UserController(UserService userService, UserMapper mapper) {
+    public UserController(UserService userService, MessageService messageService, UserMapper mapper) {
         this.userService = userService;
+        this.messageService = messageService;
         this.mapper = mapper;
     }
 
@@ -90,6 +96,19 @@ public class UserController {
         userService.update(userId, user);
 
         return ResponseEntity.ok("Message add succesfully");
+    }
+
+    @GetMapping("/{userId}/getMessages")
+    public List<Message> getAllMessageByUserId(@PathVariable Long userId) {
+
+        List<Integer> listIdMessages = userService.getById(userId).getListMessages();
+
+        List<Message> messagesList = new ArrayList<>();
+
+        for(Integer i : listIdMessages){
+            messagesList.add(messageService.getById(Long.valueOf(i)));
+        }
+        return messagesList;
     }
 
 }

@@ -53,4 +53,8 @@ public class MessageServiceImpl implements MessageService {
                     return ResponseEntity.ok().build();})
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, messageId));
     }
+
+    //OTHER SERVICES
+
+
 }

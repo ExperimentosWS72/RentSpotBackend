@@ -67,7 +67,6 @@ public class User {
 
 
 
-
     //FUNCTIONS
     public void addClient(int idClient) {
         if (!listClients.contains(idClient)) {
@@ -83,7 +82,7 @@ public class User {
 
     public void addMessage(int idMessage) {
         if (!listMessages.contains(idMessage)) {
-            listClients.add(idMessage);
+            listMessages.add(idMessage);
         }
     }
 }

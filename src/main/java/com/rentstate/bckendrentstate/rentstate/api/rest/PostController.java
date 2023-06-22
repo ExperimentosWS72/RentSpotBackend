@@ -1,12 +1,7 @@
 package com.rentstate.bckendrentstate.rentstate.api.rest;
 
 import com.rentstate.bckendrentstate.rentstate.domain.model.Post;
-import com.rentstate.bckendrentstate.rentstate.domain.model.User;
 import com.rentstate.bckendrentstate.rentstate.domain.service.PostService;
-import com.rentstate.bckendrentstate.rentstate.domain.service.UserService;
-import com.rentstate.bckendrentstate.rentstate.mapping.UserMapper;
-import com.rentstate.bckendrentstate.rentstate.resource.CreateUserResource;
-import com.rentstate.bckendrentstate.rentstate.resource.UpdateUserResource;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,7 +58,6 @@ public class PostController {
                 availablePosts.add(post);
             }
         }
-
         return availablePosts;
     }
 

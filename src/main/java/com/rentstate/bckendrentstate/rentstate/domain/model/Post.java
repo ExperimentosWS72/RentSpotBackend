@@ -51,6 +51,4 @@ public class Post {
     @NotNull
     private Integer userRentId = 0;
 
-
-
 }
