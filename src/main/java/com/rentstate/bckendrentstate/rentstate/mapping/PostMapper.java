@@ -16,5 +16,9 @@ public class PostMapper implements Serializable {
 
         return mapper.map(request, Post.class);
     }
+    public PostRequest toRequest(Post post) {
+
+        return mapper.map(post, PostRequest.class);
+    }
 
 }

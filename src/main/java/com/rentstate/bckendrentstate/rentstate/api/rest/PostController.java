@@ -37,8 +37,14 @@ public class PostController {
     }
 
     @GetMapping("{postId}")
-    public Post getPostById(@PathVariable Long postId) {
-        return postService.getById(postId);
+    public PostRequest getPostById(@PathVariable Long postId) {
+
+        Post post = postService.getById(postId);
+        PostRequest postRequest = mapper.toRequest(post);
+
+        postRequest.setAuthor_id(post.getAuthor().getId());
+
+        return postRequest;
     }
 
     @GetMapping("/available")
