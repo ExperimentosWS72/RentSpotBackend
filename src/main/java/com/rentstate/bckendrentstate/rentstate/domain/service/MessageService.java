@@ -1,6 +1,8 @@
 package com.rentstate.bckendrentstate.rentstate.domain.service;
 
 import com.rentstate.bckendrentstate.rentstate.domain.model.Message;
+import com.rentstate.bckendrentstate.rentstate.domain.model.User;
+import com.rentstate.bckendrentstate.rentstate.resource.request.MessageResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,9 @@ public interface MessageService {
 
     Message create(Message message);
 
-    Message update(Long messageId, Message resource);
-
     ResponseEntity<?> delete(Long messageId);
+
+    List<MessageResponse> getByRecipient(User recipient);
+
+
 }

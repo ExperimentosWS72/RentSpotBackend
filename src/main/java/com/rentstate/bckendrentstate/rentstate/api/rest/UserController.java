@@ -1,6 +1,9 @@
 package com.rentstate.bckendrentstate.rentstate.api.rest;
 
+import com.rentstate.bckendrentstate.rentstate.domain.model.Message;
+import com.rentstate.bckendrentstate.rentstate.domain.model.Post;
 import com.rentstate.bckendrentstate.rentstate.domain.model.User;
+import com.rentstate.bckendrentstate.rentstate.domain.service.MessageService;
 import com.rentstate.bckendrentstate.rentstate.domain.service.UserService;
 import com.rentstate.bckendrentstate.rentstate.mapping.UserMapper;
 import com.rentstate.bckendrentstate.rentstate.resource.CreateUserResource;
@@ -9,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -17,15 +21,17 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final MessageService messageService;
     private final UserMapper mapper;
 
-    public UserController(UserService userService, UserMapper mapper) {
+    public UserController(UserService userService, MessageService messageService, UserMapper mapper) {
         this.userService = userService;
+        this.messageService = messageService;
         this.mapper = mapper;
     }
 
     @GetMapping
-    public List<User> getAllUsers(Pageable pageable) {
+    public List<User> getAllUsers() {
         return  userService.getAll();
     }
 
@@ -36,7 +42,7 @@ public class UserController {
 
     @PostMapping
     public User createUser(@RequestBody CreateUserResource resource) {
-       return userService.create(mapper.toModel(resource));
+        return userService.create(mapper.toModel(resource));
     }
 
     @PutMapping("{userId}")
@@ -50,33 +56,6 @@ public class UserController {
     }
 
 
-
     //EXTRA METHODOS
-
-    @PostMapping("/{userId}/clients")
-    public ResponseEntity<String> addClientToUser(@PathVariable Long userId, @RequestBody int clientId) {
-        User user = userService.getById(userId);
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        user.addClient(clientId);
-        userService.update(userId, user);
-
-        return ResponseEntity.ok("Client add succesfully");
-    }
-
-    @PostMapping("/{userId}/posts")
-    public ResponseEntity<String> addPostToUser(@PathVariable Long userId, @RequestBody int postId) {
-        User user = userService.getById(userId);
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        user.addPost(postId);
-        userService.update(userId, user);
-
-        return ResponseEntity.ok("Post add succesfully");
-    }
 
 }

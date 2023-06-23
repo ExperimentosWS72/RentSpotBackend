@@ -23,7 +23,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @NotNull
     @Size(min=2, max=50)
     private String name;
@@ -48,29 +47,8 @@ public class User {
     @NotNull
     private String description = "";
 
-
-    @Column(columnDefinition = "FLOAT default 5")
     @Max(value = 5)
     private Float rankPoints = 5.0f;
 
-    @ElementCollection
-    @Column(name = "listClients")
-    private List<Integer> listClients= new ArrayList<>();
 
-    @ElementCollection
-    @Column(name = "listPosts")
-    private List<Integer> listPosts= new ArrayList<>();
-
-
-    public void addClient(int idClient) {
-        if (!listClients.contains(idClient)) {
-            listClients.add(idClient);
-        }
-    }
-
-    public void addPost(int idPost) {
-        if (!listClients.contains(idPost)) {
-            listClients.add(idPost);
-        }
-    }
 }
