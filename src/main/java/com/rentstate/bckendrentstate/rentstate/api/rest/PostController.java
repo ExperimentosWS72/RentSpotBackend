@@ -31,8 +31,7 @@ public class PostController {
     }
 
     @GetMapping
-    public List<Post> getAllPost(Pageable pageable) {
-
+    public List<Post> getAllPost() {
         return postService.getAll();
     }
 
