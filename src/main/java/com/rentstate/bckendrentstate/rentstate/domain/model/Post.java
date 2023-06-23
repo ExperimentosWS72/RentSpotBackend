@@ -25,6 +25,10 @@ public class Post {
 
     @NotNull
     @NotBlank
+    private String description;
+
+    @NotNull
+    @NotBlank
     private String characteristics;
 
     @NotNull
@@ -42,13 +46,14 @@ public class Post {
     @NotBlank
     private String category;
 
-    @NotNull
     private Boolean available = true;
 
-    @NotNull
-    private Long userAuthorId;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User author;
 
-    @NotNull
-    private Integer userRentId = 0;
+    @ManyToOne
+    @JoinColumn(name = "renter_id")
+    private User renter;
 
 }

@@ -20,10 +20,12 @@ public class Message {
     @NotNull
     private String content="";
 
-    @NotNull
-    private Long idUserAuthor;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User author;
 
-    @NotNull
-    private Long idUserDestination;
+    @ManyToOne
+    @JoinColumn(name = "recipient_id")
+    private User recipient;
 
 }

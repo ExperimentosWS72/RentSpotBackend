@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers(Pageable pageable) {
+    public List<User> getAllUsers() {
         return  userService.getAll();
     }
 
@@ -42,7 +42,7 @@ public class UserController {
 
     @PostMapping
     public User createUser(@RequestBody CreateUserResource resource) {
-       return userService.create(mapper.toModel(resource));
+        return userService.create(mapper.toModel(resource));
     }
 
     @PutMapping("{userId}")
@@ -56,59 +56,6 @@ public class UserController {
     }
 
 
-
     //EXTRA METHODOS
-
-    @PostMapping("/{userId}/clients")
-    public ResponseEntity<String> addClientToUser(@PathVariable Long userId, @RequestBody int clientId) {
-        User user = userService.getById(userId);
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        user.addClient(clientId);
-        userService.update(userId, user);
-
-        return ResponseEntity.ok("Client add succesfully");
-    }
-
-    @PostMapping("/{userId}/posts")
-    public ResponseEntity<String> addPostToUser(@PathVariable Long userId, @RequestBody int postId) {
-        User user = userService.getById(userId);
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        user.addPost(postId);
-        userService.update(userId, user);
-
-        return ResponseEntity.ok("Post add succesfully");
-    }
-
-    @PostMapping("/{userId}/messages")
-    public ResponseEntity<String> addMessageToUser(@PathVariable Long userId, @RequestBody int messageId) {
-        User user = userService.getById(userId);
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        user.addMessage(messageId);
-        userService.update(userId, user);
-
-        return ResponseEntity.ok("Message add succesfully");
-    }
-
-    @GetMapping("/{userId}/getMessages")
-    public List<Message> getAllMessageByUserId(@PathVariable Long userId) {
-
-        List<Integer> listIdMessages = userService.getById(userId).getListMessages();
-
-        List<Message> messagesList = new ArrayList<>();
-
-        for(Integer i : listIdMessages){
-            messagesList.add(messageService.getById(Long.valueOf(i)));
-        }
-        return messagesList;
-    }
 
 }
