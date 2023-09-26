@@ -2,7 +2,9 @@ package com.rentstate.bckendrentstate.rentstate.resource;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
+@Setter
 @Getter
 public class CreateUserResource {
     private String name;
