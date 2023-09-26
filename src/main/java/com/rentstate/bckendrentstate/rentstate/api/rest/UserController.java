@@ -21,12 +21,12 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final MessageService messageService;
+
     private final UserMapper mapper;
 
-    public UserController(UserService userService, MessageService messageService, UserMapper mapper) {
+    public UserController(UserService userService, UserMapper mapper) {
         this.userService = userService;
-        this.messageService = messageService;
+
         this.mapper = mapper;
     }
 
